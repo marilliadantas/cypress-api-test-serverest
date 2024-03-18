@@ -5,7 +5,7 @@ describe('Listar usuários', () => {
     it('Listar todos os usuários', () => {
         cy.api({
             method: 'GET',
-            url: 'https://serverest.dev/usuarios',
+            url: '/usuarios',
         })
         .then((response) => {
             expect(response.status).to.equal(200);
@@ -24,13 +24,13 @@ describe('Listar usuários', () => {
     it('Listar usuário por ID válido', () => {
         cy.api({
             method: 'GET',
-            url: 'https://serverest.dev/usuarios/38Dw6HQ4IhooHD5F',
+            url: '/usuarios/38Dw6HQ4IhooHD5F',
         })
         .then((response) => {
             expect(response.status).to.equal(200);
             expect(response.body.nome).to.equal("Karl Schuppe-Satterfield Sr.");
             expect(response.body.email).to.equal("Marta.Goldner37@gmail.com");
-            expect(response.body.password).to.equal("teste");
+            expect(response.body.password).to.equal(Cypress.env('senhaValida'));
             expect(response.body.administrador).to.equal("true");
             expect(response.body._id).to.equal("38Dw6HQ4IhooHD5F");
         })
@@ -39,7 +39,7 @@ describe('Listar usuários', () => {
     it('Listar usuário por ID inválido', () => {
         cy.api({
             method: 'GET',
-            url: 'https://serverest.dev/usuarios/dklsjgls35232',
+            url: '/usuarios/dklsjgls35232',
             failOnStatusCode: false
         })
         .then((response) => {

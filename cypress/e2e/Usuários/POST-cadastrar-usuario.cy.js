@@ -11,11 +11,11 @@ describe('Cadastro', () => {
     it('Cadastrar usuário com sucesso', () => {
         cy.api({
             method: 'POST',
-            url: 'https://serverest.dev/usuarios',
+            url: '/usuarios',
             body: {
                 "nome": nomeAleatorio,
                 "email": emailAleatorio,
-                "password": "teste",
+                "password": Cypress.env('senhaValida'),
                 "administrador": adminAleatorio
               },
         })
@@ -29,11 +29,11 @@ describe('Cadastro', () => {
     it('Cadastrar usuário com nome em branco', () => {
         cy.api({
             method: 'POST',
-            url: 'https://serverest.dev/usuarios',
+            url: '/usuarios',
             body: {
                 "nome": "",
                 "email": emailAleatorio,
-                "password": "teste",
+                "password": Cypress.env('senhaValida'),
                 "administrador": "true"
               },
             failOnStatusCode: false
@@ -48,11 +48,11 @@ describe('Cadastro', () => {
     it('Cadastrar usuário com e-mail inválido', () => {
         cy.api({
             method: 'POST',
-            url: 'https://serverest.dev/usuarios',
+            url: '/usuarios',
             body: {
                 "nome": nomeAleatorio,
-                "email": "emailinvalido@.com",
-                "password": "teste",
+                "email": "email.com",
+                "password": Cypress.env('senhaValida'),
                 "administrador": "true"
               },
             failOnStatusCode: false
@@ -67,11 +67,11 @@ describe('Cadastro', () => {
     it('Cadastrar usuário com e-mail em branco', () => {
         cy.api({
             method: 'POST',
-            url: 'https://serverest.dev/usuarios',
+            url: '/usuarios',
             body: {
                 "nome": nomeAleatorio,
                 "email": "",
-                "password": "teste",
+                "password": Cypress.env('senhaValida'),
                 "administrador": "true"
               },
             failOnStatusCode: false
@@ -86,7 +86,7 @@ describe('Cadastro', () => {
     it('Cadastrar usuário com senha em branco', () => {
         cy.api({
             method: 'POST',
-            url: 'https://serverest.dev/usuarios',
+            url: '/usuarios',
             body: {
                 "nome": nomeAleatorio,
                 "email": emailAleatorio,
@@ -105,11 +105,11 @@ describe('Cadastro', () => {
     it('Cadastrar usuário com administrador em branco', () => {
         cy.api({
             method: 'POST',
-            url: 'https://serverest.dev/usuarios',
+            url: '/usuarios',
             body: {
                 "nome": nomeAleatorio,
                 "email": emailAleatorio,
-                "password": "teste",
+                "password": Cypress.env('senhaValida'),
                 "administrador": ""
               },
             failOnStatusCode: false
@@ -124,11 +124,11 @@ describe('Cadastro', () => {
     it('Cadastrar usuário existente', () => {
         cy.api({
             method: 'POST',
-            url: 'https://serverest.dev/usuarios',
+            url: '/usuarios',
             body: {
                 "nome": "Benicio Teste",
-                "email": "benicio@qa.com.br",
-                "password": "teste",
+                "email": Cypress.env('emailValido'),
+                "password": Cypress.env('senhaValida'),
                 "administrador": "true"
               },
             failOnStatusCode: false

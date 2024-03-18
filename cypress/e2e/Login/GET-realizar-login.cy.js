@@ -4,11 +4,11 @@ describe('Login', () => {
     it('Login com sucesso', () => {
         cy.api({
             method: 'POST',
-            url: 'https://serverest.dev/login',
+            url: '/login',
             body: {
-                "email": "benicio@qa.com.br",
-                "password": "teste"
-                }
+                email: Cypress.env('emailValido'),
+                password: Cypress.env('senhaValida')
+            }
         })
         .then((response) => {
             expect(response.status).to.equal(200);
@@ -22,8 +22,8 @@ describe('Login', () => {
             method: 'POST',
             url: 'https://serverest.dev/login',
             body: {
-                "email": "emailinvalido@teste.com",
-                "password": "teste"
+                email: Cypress.env('emailInvalido'),
+                password: Cypress.env('senhaValida')
                 },
             failOnStatusCode: false
         })
@@ -36,10 +36,10 @@ describe('Login', () => {
     it('Login com senha inválida', () => {
         cy.api({
             method: 'POST',
-            url: 'https://serverest.dev/login',
+            url: '/login',
             body: {
-                "email": "fulano@qa.com",
-                "password": "senhaerrada1"
+                email: Cypress.env('emailValido'),
+                password: Cypress.env('senhaInvalida')
                 },
             failOnStatusCode: false
         })
@@ -52,10 +52,10 @@ describe('Login', () => {
     it('Login com e-mail em branco', () => {
         cy.api({
             method: 'POST',
-            url: 'https://serverest.dev/login',
+            url: '/login',
             body: {
                 "email": "",
-                "password": "teste"
+                password: Cypress.env('senhaValida')
                 },
             failOnStatusCode: false
         })
@@ -68,9 +68,9 @@ describe('Login', () => {
     it('Login com senha em branco', () => {
         cy.api({
             method: 'POST',
-            url: 'https://serverest.dev/login',
+            url: '/login',
             body: {
-                "email": "fulano@qa.com",
+                email: Cypress.env('emailValido'),
                 "password": ""
                 },
             failOnStatusCode: false
@@ -84,7 +84,7 @@ describe('Login', () => {
     it('Login com e-mail e senha em branco', () => {
         cy.api({
             method: 'POST',
-            url: 'https://serverest.dev/login',
+            url: '/login',
             body: {
                 "email": "",
                 "password": ""
