@@ -1,24 +1,31 @@
-name: End-to-end tests
-on: push
+name: Cypress CI - API ServeRest
+
+on:
+  push:
+    branches:
+      - main
+
 jobs:
   cypress-run:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      # Install npm dependencies, cache them correctly
-      # and run all Cypress tests
-      - name: Cypress run
-        uses: cypress-io/github-action@v6
-      - uses: actions/upload-artifact@v2
-        # add the line below to store screenshots only on failures
-        # if: failure()
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          name: cypress-screenshots
-          path: cypress/screenshots
-          if-no-files-found: ignore
-      - uses: actions/upload-artifact@v2
-        with:
-          name: cypress-videos
-          path: cypress/videos
-          if-no-files-found: ignore
+          node-version: '16'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Start Local Server
+        run: npx serverest &
+
+      - name: Wait for Server to Start
+        run: sleep 10
+
+      - name: Run Cypress
+        run: npx cypress run
