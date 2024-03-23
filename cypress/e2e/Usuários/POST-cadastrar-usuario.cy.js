@@ -9,16 +9,7 @@ const adminAleatorio = boolean[Math.floor(Math.random() * boolean.length)].toStr
 
 describe('Cadastro', () => {
     it('Cadastrar usuário com sucesso', () => {
-        cy.api({
-            method: 'POST',
-            url: '/usuarios',
-            body: {
-                "nome": nomeAleatorio,
-                "email": emailAleatorio,
-                "password": Cypress.env('senhaValida'),
-                "administrador": adminAleatorio
-              },
-        })
+        cy.cadastrarUsuario()
         .then((response) => {
             expect(response.status).to.equal(201);
             expect(response.body.message).to.equal("Cadastro realizado com sucesso");
