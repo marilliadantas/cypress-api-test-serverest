@@ -17,6 +17,20 @@ Cypress.Commands.add('cadastrarUsuario', () => {
     }).then((response) => { return response })
 })
 
+Cypress.Commands.add('cadastrarUsuarioInvalido', (nome, email, password, administrador) => { 
+    cy.api({
+        method: 'POST',
+        url: '/usuarios',
+        body: {
+            "nome": nome,
+            "email": email,
+            "password": password,
+            "administrador": administrador
+          },
+        failOnStatusCode: false
+    }).then((response) => { return response })
+})
+
 Cypress.Commands.add('buscarUsuarioEspecifico', (user_id) => { 
     cy.api({
         method: 'GET',
@@ -30,5 +44,28 @@ Cypress.Commands.add('buscarTodosUsuarios', () => {
         method: 'GET',
         url: '/usuarios',
         failOnStatusCode: false
+      }).then((response) => { return response })
+})
+
+Cypress.Commands.add('realizarLogin', () => { 
+    cy.api({
+        method: 'POST',
+            url: '/login',
+            body: {
+                email: Cypress.env('emailValido'),
+                password: Cypress.env('senhaValida')
+            },
+      }).then((response) => { return response })
+})
+
+Cypress.Commands.add('loginInvalido', (email, password) => { 
+    cy.api({
+        method: 'POST',
+            url: '/login',
+            body: {
+                email: email,
+                password: password
+            },
+            failOnStatusCode: false
       }).then((response) => { return response })
 })

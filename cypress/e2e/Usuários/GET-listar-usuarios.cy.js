@@ -15,9 +15,9 @@ describe('Listar usuários', () => {
                        user.password === "teste" &&
                        user.administrador === "false" &&
                        user._id === "dgjARo9DcpIPV9Up";
-            });
+            })
         })
-    });
+    })
 
     it('Listar usuário por ID válido', () => {
 
@@ -31,7 +31,7 @@ describe('Listar usuários', () => {
                 expect(response.body.administrador).to.equal("true");
                 expect(response.body._id).to.equal("4dSaLGBfaeezAIr8");
         })
-    });
+    })
 
     it('Listar usuário por ID inválido', () => {
 
@@ -42,5 +42,5 @@ describe('Listar usuários', () => {
                 expect(response.status).to.equal(400);
                 expect(response.body.message).to.equal("Usuário não encontrado");
         })
-    });
-});
+    })
+})
