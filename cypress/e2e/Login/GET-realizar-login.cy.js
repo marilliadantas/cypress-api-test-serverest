@@ -30,7 +30,7 @@ describe('Login', () => {
 
         cy.loginInvalido(email, password)
             .then((response) => {
-                expect(response.status).to.equal(401);
+                expect(response.status).to.equal(400);
                 expect(response.body.message).to.equal("Email e/ou senha inválidos");
         })
     })
