@@ -7,7 +7,7 @@ describe('Login', () => {
             .then((response) => {
                 expect(response.status).to.equal(200);
                 expect(response.body.message).to.equal("Login realizado com sucesso");
-                expect(response.body.authorization).to.not.be.empty
+                expect(response.body.authorizatiogn).to.not.be.empty
         })
     })
 
