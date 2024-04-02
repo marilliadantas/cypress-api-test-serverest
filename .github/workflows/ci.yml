@@ -17,6 +17,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '16'
+        
+      - name: 
+        uses: cypress-io/github-action@v6
+        with:
+            record: true
+        env:
+          CYPRESS_RECORD_KEY: 5867f602-e1c6-490f-b914-723e8c292686
 
       - name: Install dependencies
         run: npm install
