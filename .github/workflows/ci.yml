@@ -1,34 +1,15 @@
 name: Cypress CI - API ServeRest
-
-on:
-  push:
-    branches:
-      - main
-
+on: push
 jobs:
   cypress-run:
-    runs-on: ubuntu-latest
-
+    runs-on: ubuntu-22.04
+    environment: qa
     steps:
-      - name: Checkout code
+      - name: Copying the Project
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '16'
-
-      - name: Install dependencies
-        run: npm install
-
-      # - name: Start Local Server
-      #   run: npx serverest &
-
-      # - name: Wait for Server to Start
-      #   run: sleep 10
-
-      - name: Run Cypress
-        run: npx cypress run
+      - name: Running Cypress Tests
+        uses: cypress-io/github-action@v6
 
       - name: Uploading files in case of failure
         uses: actions/upload-artifact@v4

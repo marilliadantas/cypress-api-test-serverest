@@ -5,3 +5,4 @@ cypress.json
 cypress.env.json
 cypress/fixtures
 cypress/reports/
+ci-simples.yml
