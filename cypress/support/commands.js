@@ -40,11 +40,13 @@ Cypress.Commands.add('buscarUsuarioEspecifico', (user_id) => {
 })
 
 Cypress.Commands.add('buscarTodosUsuarios', () => { 
-    cy.api({
-        method: 'GET',
-        url: '/usuarios',
-        failOnStatusCode: false
-      }).then((response) => { return response })
+    cy.fixture("config.json").then((url) => {
+        cy.api({
+            method: 'GET',
+            url: `${url.servidor}${url.users}`,
+            failOnStatusCode: false
+          }).then((response) => { return response })
+    })
 })
 
 Cypress.Commands.add('realizarLogin', () => { 

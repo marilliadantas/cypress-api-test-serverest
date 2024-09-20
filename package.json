@@ -11,7 +11,7 @@
   "license": "ISC",
   "devDependencies": {
     "@faker-js/faker": "^8.4.1",
-    "cypress": "^13.6.6"
+    "cypress": "^13.14.2"
   },
   "dependencies": {
     "cypress-plugin-api": "^2.11.1"
