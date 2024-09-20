@@ -28,7 +28,7 @@ jobs:
       #   run: sleep 10
 
       - name: Run Cypress
-        run: npx cypress run || true
+        run: npx cypress run
 
       - name: Uploading files in case of failure
         uses: actions/upload-artifact@v4
